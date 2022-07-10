@@ -3,6 +3,7 @@ import sms
 import os
 import dotenv
 from ipaddress import IPv4Address
+from discord.ext import commands
 
 # Load .env into shell env variables
 dotenv.load_dotenv()
@@ -24,13 +25,14 @@ async def on_ready():
     print(f"{client.user} connected to discord")
 
 @client.event
+@commands.has_role("Trinitite")
 async def on_message(message):
     if message.author == client.user: return
 
     if message.content.startswith(":s "):
         for_nils = message.content[3:]
         trinitite.send_msg(for_nils)
-        await message.channel.send("Test")
+        await message.channel.send("Message sent")
 
 # Run defined client methods with the token
 client.run(TOKEN)
