@@ -1,16 +1,16 @@
 import discord
 import sms
+import os
+import dotenv
 from ipaddress import IPv4Address
 
-# Get tokens from private folder (not included in git)
-with open("private/TOKEN", "r") as tokenfile:
-    TOKEN = tokenfile.read()
+# Load .env into shell env variables
+dotenv.load_dotenv()
 
-with open("private/PHONE", "r") as phonefile:
-    PHONE = phonefile.read()
-
-with open("private/AIRMORE_IP", "r") as ipfile:
-    IP = IPv4Address(ipfile.read())
+# Get env variables as constants
+TOKEN = os.getenv("TOKEN")
+PHONE = os.getenv("PHONE")
+IP = IPv4Address(os.getenv("IP"))
 
 # Initialize client
 client = discord.Client()
