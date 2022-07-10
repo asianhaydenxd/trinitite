@@ -1,2 +1,5 @@
 # Don't steal my token!!!!
-private/
+.env
+
+# :/
+__pycache__/
