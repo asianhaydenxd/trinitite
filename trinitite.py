@@ -24,6 +24,7 @@ trinitite = sms.Trinitite(PHONE, IP)
 @client.event
 async def on_ready():
     print(f"{client.user} connected to discord")
+    trinitite.send_msg("trinitite notice:::trinitite is initialized")
     get_messages.start()
 
 @client.event
@@ -49,6 +50,10 @@ async def get_messages():
     
     if msgs:
         await channel.send("\n".join([f"{phone_to_name(msg.name)} » {msg.content}" for msg in msgs]))
+    
+    if "bye discord" in [msg.content for msg in msgs]:
+        trinitite.send_msg("trinitite notice:::trinitite is terminated")
+        exit()
 
 # Run defined client methods with the token
 client.run(TOKEN)
