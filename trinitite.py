@@ -28,14 +28,13 @@ async def on_ready():
     get_messages.start()
 
 @client.event
-@commands.has_role("Trinitite")
+# @commands.has_role("Trinitite")
 async def on_message(message):
     if message.author == client.user: return
 
-    if message.content.startswith(":s "):
-        for_nils = message.content[3:]
-        trinitite.send_msg(f"{message.author.name} » {for_nils}")
-        await message.channel.send(f"{message.author.name} » {for_nils}")
+    for_nils = message.content
+    trinitite.send_msg(f"{message.author.name} » {for_nils}")
+    await message.channel.send(f"{message.author.name} » {for_nils}")
 
 @tasks.loop(seconds = 5)
 async def get_messages():
